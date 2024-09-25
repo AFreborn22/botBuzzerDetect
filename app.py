@@ -69,12 +69,17 @@ def predict(features: Features):
         prediction = model.predict(scaled_input)
 
         # Konversi hasil prediksi dan fitur lainnya menjadi tipe Python standar
-        prediction_result = int(prediction[0])
+        if int(prediction[0]) == 0:
+            prediction_label = "Natural Comment"
+        else:
+            prediction_label = "Bot/Buzzer"
         max_cosine_sim_result = float(max_cosine_sim)
         similar_comments_count_result = int(similar_comments_count)
 
         return {
-            "prediction": prediction_result,
+            "text": features.text,
+            "time_diff": features.time_diff,
+            "prediction": prediction_label,
             "max_cosine_sim": max_cosine_sim_result,
             "similar_comments_count": similar_comments_count_result
         }

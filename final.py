@@ -6,7 +6,6 @@ from sklearn.metrics.pairwise import cosine_similarity
 from sklearn.ensemble import RandomForestClassifier
 from imblearn.over_sampling import SMOTE
 
-# Load data
 data = pd.read_csv('data/tiktokData.csv')
 
 # Features dan target
@@ -35,10 +34,9 @@ pipeline = {
     'model': model,
     'scaler': scaler,
     'vectorizer': vectorizer,
-    'tfidf_matrix': tfidf_matrix  # Simpan TF-IDF matrix
+    'tfidf_matrix': tfidf_matrix  
 }
 
-# Save pipeline to file
 pickle.dump(pipeline, open('models/full_pipeline.pkl', 'wb'))
 
 print("Model and preprocessing pipeline saved successfully!")
